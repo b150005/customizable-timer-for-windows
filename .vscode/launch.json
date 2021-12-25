@@ -16,7 +16,10 @@
       "request": "launch",
       "mainClass": "com.b150005.customizabletimerforwindows.CustomizableTimerApplication",
       "projectName": "customizable-timer-for-windows",
-      "vmArgs": "--module-path \"D:\\Java\\javafx-sdk-17.0.1\\lib\" --add-modules javafx.controls,javafx.fxml"
+      // Windows PC
+      // "vmArgs": "--module-path \"D:\\Java\\javafx-sdk-17.0.1\\lib\" --add-modules javafx.controls,javafx.fxml"
+      // MacBook
+      "vmArgs": "--module-path /Users/nito/Documents/JavaFX/javafx-sdk-17.0.1/lib --add-modules javafx.controls,javafx.fxml"
     }
   ]
 }
