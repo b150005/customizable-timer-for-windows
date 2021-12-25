@@ -38,6 +38,7 @@ public class CustomizableTimerApplication extends Application {
 
   private static void launchRedis() {
     // Redisクライアントの作成
+    // 事前にRedisのインストールが必要(https://github.com/MicrosoftArchive/redis/releases)
     RedisClient redisClient = RedisClient.create("redis://localhost:6379");
     try (
       // Redis Standaloneサーバへの接続
