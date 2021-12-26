@@ -11,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import static com.b150005.customizabletimerforwindows.KeyConstants.*;
+
 public class CustomizableTimerApplication extends Application {
   public static void main(String[] args) {
     // Redis Standaloneの起動
@@ -47,11 +49,28 @@ public class CustomizableTimerApplication extends Application {
     ) {
       // 同期実行のコマンドAPIの取得
       RedisCommands<String, String> syncCommands = connection.sync();
-      if (syncCommands.get("isExist")  == null) {
-        System.out.println("Hello!");
+      
+      // 保存されたデータが存在しない場合は初期値をセット
+      if (syncCommands.get(hasAlreadyExisted)  == null) {
+        syncCommands.set(displayOnDigitalMode, "false");
+        syncCommands.set(displayAnimationInFront, "false");
+        syncCommands.set(frontAnimationIsOn, "false");
+        syncCommands.set(frontAnimationDisplayMode, always);
+        syncCommands.set(frontAnimationFilePath, fileIsNotSelected);
+        syncCommands.set(backAnimationIsOn, "false");
+        syncCommands.set(backAnimationDisplayMode, always);
+        syncCommands.set(backAnimationFilePath, fileIsNotSelected);
+
+        syncCommands.set(digitalTimerModeIsOn, "false");
+        syncCommands.set(changeToDigitalClockAfterTimerDate, "false");
+
+        syncCommands.set(hasAlreadyExisted, "true");
       }
     } catch (Exception e) {
       e.printStackTrace();
+    } finally {
+      // Redisクライアントの終了
+      redisClient.shutdown();
     }
   }
 }
