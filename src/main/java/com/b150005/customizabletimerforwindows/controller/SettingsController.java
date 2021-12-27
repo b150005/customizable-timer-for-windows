@@ -10,6 +10,12 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import io.lettuce.core.RedisClient;
+import io.lettuce.core.api.StatefulRedisConnection;
+import io.lettuce.core.api.sync.RedisCommands;
+
+import static com.b150005.customizabletimerforwindows.KeyConstants.*;
+
 public class SettingsController implements Initializable {
   // General
   /**
@@ -217,11 +223,17 @@ public class SettingsController implements Initializable {
   @FXML
   private CheckBox shiftToClockCheckBox;
 
+  /**
+   * JavaFXコンポーネントの初期化処理
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    final ObservableList<String> displayMode = FXCollections.observableArrayList("常時", "指定時");
+    final ObservableList<String> displayMode = FXCollections.observableArrayList(always, designated);
     this.frontAnimationDisplayModeChoiceBox.setItems(displayMode);
     this.backAnimationDisplayModeChoiceBox.setItems(displayMode);
+    
+    this.frontAnimationDisplayModeChoiceBox.setValue(getValue(frontAnimationDisplayMode));
+    this.backAnimationDisplayModeChoiceBox.setValue(getValue(backAnimationDisplayMode));
 
     this.displayDatePicker1.valueProperty().addListener((observable, oldValue, newValue) -> {
 
@@ -258,19 +270,107 @@ public class SettingsController implements Initializable {
   protected void onCheckBoxClick(ActionEvent event) {
     switch (((CheckBox) event.getSource()).getId()) {
       case "digitalModeCheckButton":
+        toggle(displayOnDigitalMode);
         break;
       case "displayAnimationInFrontCheckBox":
+        toggle(displayAnimationInFront);
         break;
       case "frontAnimationCheckBox":
+        toggle(frontAnimationIsOn);
         break;
       case "backAnimationCheckBox":
+        toggle(backAnimationIsOn);
         break;
       case "timerModeCheckBox":
+        toggle(digitalTimerModeIsOn);
         break;
       case "shiftToClockCheckBox":
+        toggle(changeToDigitalClockAfterTimerDate);
         break;
       default:
         throw new IllegalStateException("Unexpected value: " + event.getSource());
+    }
+  }
+
+  private static String getValue(String key) {
+    // Redisクライアントの作成
+    RedisClient redisClient = RedisClient.create("redis://localhost:6379");
+    try (
+      // Redis Standaloneサーバへの接続
+      StatefulRedisConnection<String, String> connection = redisClient.connect();
+    ) {
+      // 同期実行のコマンドAPIの取得
+      RedisCommands<String, String> syncCommands = connection.sync();
+      
+      // キーが存在しない場合は空文字を返却
+      if (syncCommands.get(key) == null) {
+        return "";
+      }
+      else {
+        // Redisサーバからキーを指定して値を取得
+        return syncCommands.get(key);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      // エラーが生じた場合も空文字を返却
+      return "";
+    } finally {
+      // Redisクライアントの終了
+      redisClient.shutdown();
+    }
+  }
+
+  private static void setValue(String key, String value) {
+    // Redisクライアントの作成
+    RedisClient redisClient = RedisClient.create("redis://localhost:6379");
+    try (
+      // Redis Standaloneサーバへの接続
+      StatefulRedisConnection<String, String> connection = redisClient.connect();
+    ) {
+      // 同期実行のコマンドAPIの取得
+      RedisCommands<String, String> syncCommands = connection.sync();
+      
+      // Redisサーバにキーと値を送信
+      syncCommands.set(key, value);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      // Redisクライアントの終了
+      redisClient.shutdown();
+    }
+  }
+
+  private static void toggle(String key) {
+    // Redisクライアントの作成
+    RedisClient redisClient = RedisClient.create("redis://localhost:6379");
+    try (
+      // Redis Standaloneサーバへの接続
+      StatefulRedisConnection<String, String> connection = redisClient.connect();
+    ) {
+      // 同期実行のコマンドAPIの取得
+      RedisCommands<String, String> syncCommands = connection.sync();
+      
+      // キーの存在チェックを行い、Boolean値である場合のみ更新
+      if (syncCommands.get(key)  == null) {
+        System.out.println("a designated key does not exist.");
+      }
+      else {
+        switch(syncCommands.get(key)) {
+          case "true":
+            syncCommands.set(key, "false");
+            break;
+          case "false":
+            syncCommands.set(key, "true");
+            break;
+          default:
+            System.out.println("a designated key does not have Boolean value.");
+        }
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      // Redisクライアントの終了
+      redisClient.shutdown();
     }
   }
 

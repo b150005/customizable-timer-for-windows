@@ -16,7 +16,7 @@ import static com.b150005.customizabletimerforwindows.KeyConstants.*;
 public class CustomizableTimerApplication extends Application {
   public static void main(String[] args) {
     // Redis Standaloneの起動
-    launchRedis();
+    // launchRedis();
     // アプリケーションの起動
     launch(args);
   }
@@ -34,6 +34,14 @@ public class CustomizableTimerApplication extends Application {
     } catch (IOException e) {
       e.printStackTrace();
     }
+
+    // 終了時の処理
+    stage.showingProperty().addListener((observable, oldValue, newValue) -> {
+      if (oldValue == true && newValue == false) {
+        System.out.println("hello~");
+      }
+    });
+
     stage.setTitle("Settings");
     stage.show();
   }
