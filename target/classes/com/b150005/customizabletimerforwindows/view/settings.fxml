@@ -5,7 +5,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ColorPicker?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
@@ -17,11 +16,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" 
-        xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.b150005.customizabletimerforwindows.controller.SettingsController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.b150005.customizabletimerforwindows.controller.SettingsController">
   <tabs>
     <Tab text="General">
          <content>
@@ -79,11 +78,6 @@
                      </GridPane.margin>
                   </Button>
                   <Separator GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
-                  <DatePicker fx:id="displayDatePicker1" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets bottom="1.0" left="10.0" right="10.0" top="1.0" />
-                     </GridPane.margin>
-                  </DatePicker>
                   <Label text="時刻①" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets right="10.0" />
@@ -92,26 +86,6 @@
                      <GridPane.margin>
                         <Insets right="10.0" />
                      </GridPane.margin></Label>
-                  <DatePicker fx:id="displayDatePicker2" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets bottom="1.0" left="10.0" right="10.0" top="1.0" />
-                     </GridPane.margin>
-                  </DatePicker>
-                  <DatePicker fx:id="displayDatePicker3" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets bottom="1.0" left="10.0" right="10.0" top="1.0" />
-                     </GridPane.margin>
-                  </DatePicker>
-                  <DatePicker fx:id="displayDatePicker4" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="13" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets bottom="1.0" left="10.0" right="10.0" top="1.0" />
-                     </GridPane.margin>
-                  </DatePicker>
-                  <DatePicker fx:id="displayDatePicker5" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets bottom="1.0" left="10.0" right="10.0" top="1.0" />
-                     </GridPane.margin>
-                  </DatePicker>
                   <Label text="時刻③" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="12" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets right="10.0" />
@@ -159,6 +133,171 @@
                         <Insets bottom="1.0" left="10.0" top="1.0" />
                      </GridPane.margin>
                   </ChoiceBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                     <children>
+                        <ChoiceBox fx:id="yearChoiceBox1">
+                           <opaqueInsets>
+                              <Insets bottom="1.0" top="1.0" />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label alignment="CENTER" contentDisplay="TEXT_ONLY" text="年" />
+                        <ChoiceBox fx:id="monthChoiceBox1">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label alignment="CENTER" contentDisplay="TEXT_ONLY" text="月" />
+                        <ChoiceBox fx:id="dayChoiceBox1">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text="日" />
+                        <ChoiceBox fx:id="hourChoiceBox1">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </ChoiceBox>
+                        <Label text=" : " />
+                        <ChoiceBox fx:id="minuteChoiceBox1">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text=" : " />
+                        <ChoiceBox fx:id="secondChoiceBox1">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ChoiceBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="11">
+                     <children>
+                        <ChoiceBox fx:id="yearChoiceBox2">
+                           <HBox.margin>
+                              <Insets bottom="1.0" top="1.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text="年" />
+                        <ChoiceBox fx:id="monthChoiceBox2">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text="月" />
+                        <ChoiceBox fx:id="dayChoiceBox2">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text="日" />
+                        <ChoiceBox fx:id="hourChoiceBox2">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text=" : " />
+                        <ChoiceBox fx:id="minuteChoiceBox2">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text=" : " />
+                        <ChoiceBox fx:id="secondChoiceBox2">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ChoiceBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="12">
+                     <children>
+                        <ChoiceBox fx:id="yearChoiceBox3" />
+                        <Label text="年" />
+                        <ChoiceBox fx:id="monthChoiceBox3">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text="月" />
+                        <ChoiceBox fx:id="dayChoiceBox3">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text="日" />
+                        <ChoiceBox fx:id="hourChoiceBox3">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text=" : " />
+                        <ChoiceBox fx:id="minuteChoiceBox3" />
+                        <Label text=" : " />
+                        <ChoiceBox fx:id="secondChoiceBox3" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="13">
+                     <children>
+                        <ChoiceBox fx:id="yearChoiceBox4" />
+                        <Label text="年" />
+                        <ChoiceBox fx:id="monthChoiceBox4">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text="月" />
+                        <ChoiceBox fx:id="dayChoiceBox4">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text="日" />
+                        <ChoiceBox fx:id="hourChoiceBox4">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text=" : " />
+                        <ChoiceBox fx:id="minuteChoiceBox4" />
+                        <Label text=" : " />
+                        <ChoiceBox fx:id="secondChoiceBox4" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="14">
+                     <children>
+                        <ChoiceBox fx:id="yearChoiceBox5" />
+                        <Label text="年" />
+                        <ChoiceBox fx:id="monthChoiceBox5">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text="月" />
+                        <ChoiceBox fx:id="dayChoiceBox5">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text="日" />
+                        <ChoiceBox fx:id="hourChoiceBox5">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text=" : " />
+                        <ChoiceBox fx:id="minuteChoiceBox5" />
+                        <Label text=" : " />
+                        <ChoiceBox fx:id="secondChoiceBox5" />
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
          </content>
@@ -320,11 +459,6 @@
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <DatePicker fx:id="timerDatePicker" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets bottom="1.0" left="10.0" right="10.0" top="1.0" />
-                     </GridPane.margin>
-                  </DatePicker>
                   <CheckBox fx:id="shiftToClockCheckBox" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onCheckBoxClick" text="期限超過後に時計モードに移行" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
                   <Label text="プレビュー" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="CENTER" />
                   <Separator maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER" />
@@ -379,6 +513,33 @@
                         <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="5" max="120" min="0" />
                      </valueFactory>
                   </Spinner>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                     <children>
+                        <ChoiceBox fx:id="yearTimerChoiceBox" />
+                        <Label text="年" />
+                        <ChoiceBox fx:id="monthTimerChoiceBox">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text="月" />
+                        <ChoiceBox fx:id="dayTimerChoiceBox">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text="日" />
+                        <ChoiceBox fx:id="hourTimerChoiceBox">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Label text=" : " />
+                        <ChoiceBox fx:id="minuteTimerChoiceBox" />
+                        <Label text=" : " />
+                        <ChoiceBox fx:id="secondTimerChoiceBox" />
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
          </content>
