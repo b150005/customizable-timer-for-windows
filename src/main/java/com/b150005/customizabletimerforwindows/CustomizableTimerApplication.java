@@ -18,7 +18,7 @@ public class CustomizableTimerApplication extends Application {
     // Redis Standaloneの起動
     // launchRedis();
     // アプリケーションの起動
-    launch(args);
+    // launch(args);
   }
 
   /**
